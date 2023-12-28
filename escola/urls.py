@@ -17,8 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include  # Importa include
 
+from cursos.urls import router  # Importa o router do cursos.urls
+
 urlpatterns = [
     path("api/v1/", include("cursos.urls")),  # Inclui as rotas de cursos
+    path("api/v2/", include(router.urls)),  # Inclui as rotas de cursos
     path("admin/", admin.site.urls),
     # Inclui as rotas do Django Rest Framework, que são as rotas de autenticação, sendo elas: login, logout e logoutall
     path("auth/", include("rest_framework.urls")),
