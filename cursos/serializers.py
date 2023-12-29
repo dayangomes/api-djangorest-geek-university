@@ -21,14 +21,14 @@ class AvaliacaoSerializer(serializers.ModelSerializer):
 
 
 class CursoSerializer(serializers.ModelSerializer):
-    # Nested Relationship
+    # Nested Relationship, trabalha com o objeto
     # avaliacoes = AvaliacaoSerializer(many=True, read_only=True)
 
-    # Hyperlinked Related Field
+    # Hyperlinked Related Field, trabalha com a url do objeto
     # avaliacoes = serializers.HyperlinkedRelatedField(
     #     many=True, read_only=True, view_name='avaliacao-detail')
 
-    # Primary Key Related Field
+    # Primary Key Related Field, trabalha com o id do objeto
     avaliacoes = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:

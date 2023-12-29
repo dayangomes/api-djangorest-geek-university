@@ -63,10 +63,16 @@ class CursoViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["get"])
     def avaliacoes(self, request, pk=None):
-        # Busca o curso pelo id informado na URL (pk).
-        curso = self.get_object()
+        self.pagination_class.page_size = 2
+        avaliacao = Avaliacao.objects.filter(curso_id=pk)
+        page = self.paginate_queryset(avaliacao)
+
+        if page is not None:
+            serializer = AvaliacaoSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
         # Busca todas as avaliações do curso encontrado.
-        serializer = AvaliacaoSerializer(curso.avaliacoes.all(), many=True)
+        serializer = AvaliacaoSerializer(avaliacao, many=True)
         return Response(serializer.data)
 
 
