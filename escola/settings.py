@@ -8,6 +8,9 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
+
+Token: 022175fb829cd359c283513c429048e7dc50736f
+Token 7afcdc31bf7910ec3172b4dfa1c5789a0cb11d5b Joao
 """
 
 import os
@@ -42,6 +45,7 @@ INSTALLED_APPS = [
     # Libs
     "django_filters",
     "rest_framework",
+    "rest_framework.authtoken",
 
     # Local apps
     "cursos",
@@ -131,7 +135,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Django REST Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication', # Autenticação por sessão
+        # 'rest_framework.authentication.SessionAuthentication', # Autenticação por sessão
+        'rest_framework.authentication.TokenAuthentication', # Autenticação por token
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly', # Permite acesso apenas para usuários autenticados
