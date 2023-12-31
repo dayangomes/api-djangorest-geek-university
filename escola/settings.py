@@ -143,6 +143,14 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination', # Paginação
     'PAGE_SIZE': 2, # Quantidade de registros por página
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle', # Limite de requisições anônimas
+        'rest_framework.throttling.UserRateThrottle', # Limite de requisições por usuário
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '5/minute', # 5 requisições por minuto para usuários anônimos
+        'user': '10/minute', # 10 requisições por minuto para usuários autenticados
+    }
 }
 
 # Default primary key field type
